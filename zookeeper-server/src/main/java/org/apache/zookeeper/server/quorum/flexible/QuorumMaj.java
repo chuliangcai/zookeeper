@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
  * straightforward.
  *
  */
+//是QuorumVerifier的默认实现，大名鼎鼎的过半算法就是他了
 public class QuorumMaj implements QuorumVerifier {
 
     private static final Logger LOG = LoggerFactory.getLogger(QuorumMaj.class);

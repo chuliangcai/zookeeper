@@ -840,6 +840,7 @@ public class DataTree {
 
     }
 
+    //最后一次commit的事务请求的zxid
     public volatile long lastProcessedZxid = 0;
 
     public ProcessTxnResult processTxn(TxnHeader header, Record txn, TxnDigest digest) {

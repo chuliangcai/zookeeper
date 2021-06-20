@@ -37,6 +37,8 @@ import org.apache.zookeeper.server.quorum.SyncedLearnerTracker;
 public interface QuorumVerifier {
 
     long getWeight(long id);
+
+    //核心方法传入的server ids 是否构成了一个法定人数
     boolean containsQuorum(Set<Long> set);
     long getVersion();
     void setVersion(long ver);
