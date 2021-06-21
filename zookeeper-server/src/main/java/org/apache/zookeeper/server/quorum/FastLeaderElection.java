@@ -925,6 +925,7 @@ public class FastLeaderElection implements Election {
              * if v.electionEpoch == logicalclock. The current participant uses recvset to deduce on whether a majority
              * of participants has voted for it.
              */
+            //可以理解为投票箱，本次leader选举的选票都会放进这个投票箱内，当前参与者使用投票箱决定是否多数参与者已经投了某个leader了。
             Map<Long, Vote> recvset = new HashMap<Long, Vote>();
 
             /*
@@ -934,6 +935,7 @@ public class FastLeaderElection implements Election {
              * outofelection to learn which participant is the leader if it arrives late (i.e., higher logicalclock than
              * the electionEpoch of the received notifications) in a leader election.
              */
+            //上一次leader选举的投票。
             Map<Long, Vote> outofelection = new HashMap<Long, Vote>();
 
             int notTimeout = minNotificationInterval;
@@ -970,6 +972,7 @@ public class FastLeaderElection implements Election {
                     if (manager.haveDelivered()) {
                         sendNotifications();
                     } else {
+                        //如果当前的通知为null，并且没有发送过，那么就会尝试连接其他所有节点。
                         manager.connectAll();
                     }
 

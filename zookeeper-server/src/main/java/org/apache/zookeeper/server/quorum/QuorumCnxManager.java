@@ -510,6 +510,8 @@ public class QuorumCnxManager {
         }
 
         // If lost the challenge, then drop the new connection
+        //这句代码有意思，就是说如果要发送的server id比自己的还要大的话，就关闭这个连接，也就是只能大的主动去联系小的。如果小的连接大的话，直接
+        //关闭连接。这样可以达到两台机器直接只需要简历一个连接的目的。
         if (sid > self.getId()) {
             LOG.info("Have smaller server identifier, so dropping the connection: (myId:{} --> sid:{})", self.getId(), sid);
             closeSocket(sock);
